@@ -6,6 +6,7 @@ import java.util.List;
 
 @Component
 public class Student {
+    private Integer id;
     private String name;
     private Integer age;
     private String gender;
@@ -13,6 +14,14 @@ public class Student {
     private List<String> hobbys;
     private String phone;
     private String email;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -72,7 +81,8 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +
