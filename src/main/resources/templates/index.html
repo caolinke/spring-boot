@@ -2,9 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>默认首页</title>
 </head>
 <body>
-    <input type="text" name="name" id="name" value=""/>
+    <h2>导入Excel表格</h2>
+    <form action="/import" method="post" enctype="multipart/form-data">
+        <input type="file" value="" id="file" name="file" />
+        <input type="submit" value="提交"/>
+    </form>
 </body>
 </html>
