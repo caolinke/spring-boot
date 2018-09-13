@@ -17,9 +17,9 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping("/findAll")
-   public String findAll(Model model){
-      List<Student> list =  studentService.findStudentList();
-      model.addAttribute("users",list);
+    public String findAll(Model model){
+        List<Student> list =  studentService.findStudentList();
+        model.addAttribute("users",list);
       return "/user/UserList";
-   }
+    }
 }

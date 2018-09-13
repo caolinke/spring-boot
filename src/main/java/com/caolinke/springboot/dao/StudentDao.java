@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,9 +45,10 @@ public class StudentDao {
      * 批量插入student信息
      * @param studentList
      */
-    public void addStudentList(List<Student> studentList){
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public int addStudentList(List<Student> studentList){
         String sql = "insert into student(id,name,sex,age,pno,grade,remark) values(?,?,?,?,?,?,?)";
-        jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+        int[] num = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
                 preparedStatement.setInt(1,studentList.get(i).getId());
@@ -60,9 +62,10 @@ public class StudentDao {
 
             @Override
             public int getBatchSize() {
-                return 0;
+                return studentList.size();
             }
         });
+        return num.length;
     }
 
     /**
