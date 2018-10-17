@@ -7,12 +7,41 @@
 <body>
 <h2>用户列表</h2>
 <div>
-    <ul>
-       <li th:each="user:${users}">
-            <span th:text="${user.name}"></span>-
-            <span th:text="${user.age}"></span>
-        </li>
-    </ul>
+    <table>
+        <thead>
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>学号</td>
+            <td>班级</td>
+        </tr>
+        </thead>
+        <tbody id="tBody" th:each="user:${users}">
+        <tr>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.sex}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.pno}"></td>
+            <td th:text="${user.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
+
+<script th:inline="javascript">
+    /**
+     * element.insertAdjacentHTML(position, text);
+     * position 是相对于 element 元素的位置，并且只能是以下的字符串之一：
+     * beforebegin：在 element 元素的前面。
+     * afterbegin：在 element 元素的第一个子节点前面。
+     * beforeend：在 element 元素的最后一个子节点后面。
+     * afterend：在 element 元素的后面。
+     *
+     * text 是字符串，会被解析成 HTML 或 XML，并插入到 DOM 树中。
+     */
+    /
+    document.getElementById("tBody").insertAdjacentHTML("afterbegin","<tr><td>哈哈</td></tr>")
+</script>
 </html>
